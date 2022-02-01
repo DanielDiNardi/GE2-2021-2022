@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BigBoid : MonoBehaviour
 {
+    public PathGeneration path;
+    public bool pathFollowedEnabled = false;
     public Vector3 acceleration;
     public Vector3 velocity;
     public Vector3 force;
@@ -25,12 +27,26 @@ public class BigBoid : MonoBehaviour
         return desired - velocity;
     }
 
+    public Vector3 PathFollow(){
+        Vector3 nextWaypoint = path.Next();
+        float dist = Vector3.Distance(nextWaypoint, transform.position);
+
+        if(dist < 1.0f){
+            path.AdvanceToNext();
+        }
+        return Seek(nextWaypoint);
+    }
+
     Vector3 Calculate()
     {
         force = Vector3.zero;
         if (seekEnabled)
         {
-            force += Seek(seekTarget);
+            force += Seek(seekTarget.position);
+        }
+
+        if(pathFollowedEnabled){
+            force += PathFollow();
         }
         return force;
     }
