@@ -83,6 +83,9 @@ public class BigBoid : MonoBehaviour
         Vector3 force = Vector3.zero;
 
         // Put your code here!
+        force += Input.GetAxis("Vertical") * Vector3.forward * steeringForce;
+        force += Input.GetAxis("Horizontal") * Vector3.right * steeringForce;
+
         return force;
     }
 
@@ -166,7 +169,7 @@ public class BigBoid : MonoBehaviour
         speed = velocity.magnitude;
         if (speed > 0)
         {
-            //transform.forward = velocity;
+            // transform.forward = velocity;
 
             Vector3 tempUp = Vector3.Lerp(transform.up, Vector3.up + (acceleration * banking), Time.deltaTime * 3.0f);
             transform.LookAt(transform.position + velocity, tempUp);
