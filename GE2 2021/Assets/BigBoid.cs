@@ -118,13 +118,13 @@ public class BigBoid : MonoBehaviour
     {
         // Put your code here!
 
-        Vector3 toTarget = target = transform.position;
+        Vector3 toTarget = target - transform.position;
         float dist = toTarget.magnitude;
         float ramped = (dist / slowingDistance) * maxSpeed;
         float clamped = Mathf.Min(ramped, maxSpeed);
         Vector3 desired = (toTarget/dist) * clamped;
 
-        return Vector3.zero;
+        return desired - velocity;
     }
 
     public Vector3 CalculateForce()
