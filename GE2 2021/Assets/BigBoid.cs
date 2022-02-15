@@ -90,7 +90,10 @@ public class BigBoid : MonoBehaviour
         Vector3 force = Vector3.zero;
 
         // Put your code here!
-        force += Input.GetAxis("Vertical") * Vector3.forward * steeringForce;
+        force += Input.GetAxis("Vertical") * transform.forward * steeringForce;
+
+        
+
         force += Input.GetAxis("Horizontal") * Vector3.right * steeringForce;
 
         return force;
