@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 253155653}
   - component: {fileID: 253155652}
   - component: {fileID: 253155651}
+  - component: {fileID: 253155655}
   m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
@@ -220,6 +221,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &253155655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253155650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0ae4958be6ab64a84a78c87be3b9bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  speed: 0
+  acceleration: {x: 0, y: 0, z: 0}
+  force: {x: 0, y: 0, z: 0}
+  maxSpeed: 5
+  maxForce: 10
+  mass: 1
+  seekEnabled: 0
+  seekTargetTransform: {fileID: 0}
+  seekTarget: {x: 0, y: 0, z: 0}
+  arriveEnabled: 0
+  arriveTargetTransform: {fileID: 0}
+  arriveTarget: {x: 0, y: 0, z: 0}
+  slowingDistance: 80
+  path: {fileID: 1491248566}
+  pathFollowingEnabled: 1
+  waypointDistance: 3
+  banking: 0.1
+  damping: 0.1
+  playerSteeringEnabled: 0
+  steeringForce: 100
+  pursueEnabled: 0
+  pursueTarget: {fileID: 0}
+  pursueTargetPos: {x: 0, y: 0, z: 0}
 --- !u!1 &423900186
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,7 +673,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1491248566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,7 +756,7 @@ MonoBehaviour:
   seekEnabled: 0
   seekTargetTransform: {fileID: 253155654}
   seekTarget: {x: 0, y: 0, z: 0}
-  arriveEnabled: 1
+  arriveEnabled: 0
   arriveTargetTransform: {fileID: 253155654}
   arriveTarget: {x: 0, y: 0, z: 0}
   slowingDistance: 10
@@ -730,8 +767,8 @@ MonoBehaviour:
   damping: 0.1
   playerSteeringEnabled: 0
   steeringForce: 100
-  pursueEnabled: 0
-  pursueTarget: {fileID: 0}
+  pursueEnabled: 1
+  pursueTarget: {fileID: 253155655}
   pursueTargetPos: {x: 0, y: 0, z: 0}
 --- !u!65 &1661289993
 BoxCollider:
