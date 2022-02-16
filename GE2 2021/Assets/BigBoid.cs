@@ -40,6 +40,8 @@ public class BigBoid : MonoBehaviour
 
     public Vector3 pursueTargetPos;
 
+    public bool offenseEnabled = false;
+
     public Vector3 Pursue(BigBoid pursueTarget)
     {
         // Put your code here!
@@ -51,6 +53,19 @@ public class BigBoid : MonoBehaviour
         Vector3 target = pursueTargetPos + (lookAhead * pursueTarget.velocity);
 
         return Seek(target);
+    }
+
+    public Vector3 OffsetPursue(BigBoid pursueTarget)
+    {
+        // Put your code here!
+        pursueTargetPos = pursueTarget.transform.position;
+
+        Vector3 target = new Vector3(pursueTargetPos.x * 1.5f, pursueTargetPos.y, pursueTargetPos.z * 1.5f);
+        float dist = (target - transform.position).magnitude;
+        float lookAhead = (dist / maxSpeed);
+        target = target + (lookAhead * pursueTarget.velocity);
+
+        return Arrive(target);
     }
 
 
@@ -142,6 +157,11 @@ public class BigBoid : MonoBehaviour
     public Vector3 CalculateForce()
     {
         Vector3 f = Vector3.zero;
+        if (offenseEnabled)
+        {
+            f += OffsetPursue(pursueTarget);
+        }
+
         if (seekEnabled)
         {
             if (seekTargetTransform != null)
